@@ -1,0 +1,38 @@
+.title {
+  font-size: 4em;
+  text-align: center;
+  margin-top: 2em;
+  margin-bottom: 3em;
+  font-family: Wellfleet;
+}
+
+.weatherIcon {
+  height: 10em;
+  width: 10em;
+  margin-right: 1em;
+}
+
+.tempText {
+  margin-left: 1em;
+  font-family: Wellfleet;
+  font-size: 4em;
+}
+
+.tempBtn {
+  font-family: Wellfleet;
+  font-size: 1.5em;
+  margin-left: 4em;
+}
+
+.weatherDivs {
+  font-family: Wellfleet;
+  border-style: solid;
+  background-color: rgba(200, 200, 200, .4);
+  font-size: 2em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-right: .5em;
+  margin-left: .5em;
+}
