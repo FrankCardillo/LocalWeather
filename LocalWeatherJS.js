@@ -18,7 +18,7 @@ app.controller('MainCtrl', function($scope, $http) {
     var apiURL = 'http://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + "&APPID=" + $scope.appId;
 
     /* this function actually does the api call and then uses the JSON received from that to update all of the html elements on our page, again inside the scope of the geolocation success callback function (within the asynchronous flow) */
-    function fetch() {
+    $scope.fetch = function() {
       $http.get(apiURL).success(function(response) {
         $scope.locationDiv.innerHTML = response.name;
         $scope.weatherDiv.innerHTML = response.weather[0].description;
@@ -26,23 +26,19 @@ app.controller('MainCtrl', function($scope, $http) {
         $scope.windDiv.innerHTML = Math.ceil(response.wind.speed * 2.236936) + ' mph';
         $scope.theIcon.innerHTML = ("<img class='weatherIcon' src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png'>");
         if (response.weather[0].main === "Thunderstorm" || response.weather[0].main === "Rain" || response.weather[0].main === "Drizzle") {
-          document.body.style.backgroundImage = "url('https://aditty.files.wordpress.com/2011/01/20100616_191436.jpg')";
-        }
-        else if (response.weather[0].main === "Clear") {
-          document.body.style.backgroundImage = "url('https://upload.wikimedia.org/wikipedia/commons/6/62/Clear_weather_clouds.jpg')";
-        }
-        else if (response.weather[0].main === "Snow") {
-          document.body.style.backgroundImage = "url('http://img10.deviantart.net/cfd4/i/2010/317/a/8/snowy_day_by_bellefoto-d32roh0.jpg')";
-        }
-        else if (response.weather[0].main === "Clouds") {
-          document.body.style.backgroundImage = "http://www.artween.com/var/artween/storage/images/individuals/forrester-ellen/theme/cloudy-day/700883-1-eng-US/Cloudy-Day_reference.jpg')";
-        }
-        else { 
-          document.body.style.background = "blue";
+          $("body").css("background", "url('https://aditty.files.wordpress.com/2011/01/20100616_191436.jpg')");
+        } else if (response.weather[0].main === "Clear") {
+          $("body").css("background", "url('https://upload.wikimedia.org/wikipedia/commons/6/62/Clear_weather_clouds.jpg')");
+        } else if (response.weather[0].main === "Snow") {
+          $("body").css("background", "url('http://img10.deviantart.net/cfd4/i/2010/317/a/8/snowy_day_by_bellefoto-d32roh0.jpg')");
+        } else if (response.weather[0].main === "Clouds") {
+          $("body").css("background", "url('http://www.artween.com/var/artween/storage/images/individuals/forrester-ellen/theme/cloudy-day/700883-1-eng-US/Cloudy-Day_reference.jpg')");
+        } else {
+          $("body").css("background", "blue");
         }
       });
     }
-    fetch();
+    $scope.fetch();
 
   };
 
